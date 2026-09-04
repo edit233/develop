@@ -1,11 +1,11 @@
 ---
 title: Linux 运维操作
-tags: [Linux, 大类, 命令, Shell, vim, 服务器, systemd, 部署, MySQL, Nginx, yum]
+tags: [Linux, 命令, Shell, vim, 服务器, systemd, yum]
 created: 2026-08-09
 ---
 
 ## 概述
-Linux 运维操作完整指南：目录结构与常用命令、vim 编辑、查找与管道、软件安装与包管理、systemd 服务管理、防火墙、MySQL 安装配置、Nginx 编译安装与反向代理。全部为可复用命令，参数处中文注明。
+Linux 运维操作完整指南：目录结构与常用命令、vim 编辑、查找与管道、软件安装与包管理、systemd 服务管理、防火墙。全部为可复用命令，参数处中文注明。
 
 ## 一、目录结构
 Linux 是单根树形结构，`/` 是所有目录的顶点（与 Windows 盘符结构不同）。
@@ -197,123 +197,4 @@ systemctl stop firewalld
 systemctl disable firewalld
 ```
 
-## 十五、安装 MySQL（二进制方式）
-```bash
-# 1. 检查系统中已安装的 mysql/mariadb（CentOS7 自带 mariadb，与 MySQL 冲突需卸载）
-rpm -qa | grep mysql
-rpm -qa | grep mariadb
-rpm -e --nodeps mariadb-libs-版本号
 
-# 2. 解压安装包并移动到 /usr/local/mysql
-tar -zxvf mysql-8.0.30-linux-glibc2.12-x86_64.tar.xz
-mv mysql-8.0.30-linux-glibc2.12-x86_64 /usr/local/mysql
-
-# 3. 配置环境变量（追加到 /etc/profile 尾部）
-#   export MYSQL_HOME=/usr/local/mysql
-#   export PATH=$MYSQL_HOME/bin:$PATH
-cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysql
-chkconfig --add mysql
-
-# 4. 初始化数据库（执行时日志中会输出 root 临时密码，务必记录下来）
-groupadd mysql
-useradd -r -g mysql -s /bin/false mysql
-mysqld --initialize --user=mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data
-
-# 5. 启动并登录（服务名可能是 mysql 或 mysqld）
-systemctl start mysql
-mysql -uroot -p临时密码
-```
-初始化配置（root 默认仅本机 localhost 可访问）：
-```sql
--- 修改 root 本地登录密码
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '新密码';
--- 创建远程访问账号并授权（Windows 客户端或其他服务器访问）
-CREATE USER 'root'@'%' IDENTIFIED BY '新密码';
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'%';
-FLUSH PRIVILEGES;
-```
-远程访问还需在防火墙开放 3306 端口。
-
-## 十六、安装 Nginx（源码编译）
-```bash
-# 1. 安装依赖与 C 编译环境
-yum install -y pcre pcre-devel zlib zlib-devel openssl openssl-devel
-yum install gcc-c++
-
-# 2. 解压源码包并进入
-tar -zxvf nginx-1.20.2.tar.gz
-cd nginx-1.20.2
-
-# 3. 配置（生成 Makefile），--prefix 指定安装目录
-./configure --prefix=/usr/local/nginx
-
-# 4. 编译并安装
-make
-make install
-```
-运行：
-```bash
-cd /usr/local/nginx
-sbin/nginx            # 启动
-sbin/nginx -s reload  # 重载配置
-sbin/nginx -s stop    # 停止（-s quit 为优雅停止）
-ps -ef | grep nginx   # 查看进程确认是否启动
-```
-注册为 systemd 服务（Nginx 为 fork 型进程，需指定 Type=forking 与 PIDFile）：
-```ini
-[Unit]
-Description=The NGINX HTTP and reverse proxy server
-After=network.target remote-fs.target nss-lookup.target
-
-[Service]
-ExecStart=/usr/local/nginx/sbin/nginx
-ExecReload=/usr/local/nginx/sbin/nginx -s reload
-ExecStop=/usr/local/nginx/sbin/nginx -s stop
-Type=forking
-PIDFile=/usr/local/nginx/logs/nginx.pid
-Restart=on-failure
-RestartSec=5s
-
-[Install]
-WantedBy=multi-user.target
-```
-
-## 十七、Nginx 静态资源与反向代理
-- **静态资源**：前端页面（html/css/js/image）放在 Nginx 安装目录的 `html` 目录，访问时由 Nginx 直接返回
-- **反向代理**：页面请求动态数据时，Nginx 把 `/api/` 路径的请求代理到后端服务，实现前后端分离
-
-标准完整代码（nginx.conf 的 server 部分）：
-```nginx
-server {
-    listen       80;
-    server_name  localhost;
-
-    location / {                 # 静态资源
-        root   html/public;      # 前端静态资源目录
-        index  index.html index.htm;   # 默认首页
-    }
-
-    location /api/ {             # 动态接口反向代理到后端
-        proxy_pass http://localhost:8000;
-        proxy_http_version 1.1;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        # SSE 流式响应支持
-        proxy_buffering off;
-        proxy_cache off;
-        proxy_read_timeout 300s;
-    }
-}
-```
-修改配置后 `systemctl reload nginx`（或 `sbin/nginx -s reload`）生效。
-
-## 相关大类
-- [[Docker 基础操作]] —— 容器化部署方案（与本篇的裸机部署互补）
-
-## 参考
-- [Linux man pages](https://man7.org/linux/man-pages/)
-- [systemd.service 文档](https://www.freedesktop.org/software/systemd/man/latest/systemd.service.html)
-- [Nginx 官方文档](https://nginx.org/en/docs/)
-- [uv 安装文档](https://uv.doczh.com/getting-started/installation/)

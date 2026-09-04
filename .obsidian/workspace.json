@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "基础知识/其他/Git与GitHub-版本控制与远程同步.md",
+                "file": "基础知识/Java/SpringBoot-统一响应与数据模型.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Git与GitHub-版本控制与远程同步"
+              "title": "SpringBoot-统一响应与数据模型"
             }
           }
         ]
@@ -85,7 +85,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "基础知识/其他/Git与GitHub-版本控制与远程同步.md",
+                "file": "基础知识/Java/SpringBoot-统一响应与数据模型.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -205,24 +205,30 @@
   },
   "active": "8f538022352d1fd8",
   "lastOpenFiles": [
+    "项目导航/项目导航.md",
+    "基础知识/Java/SpringBoot-统一响应与数据模型.md",
+    "基础知识/Java/SpringBoot-三层架构、IOC与DI.md",
+    "基础知识/Java/Maven-依赖管理与多模块构建.md",
+    "基础知识/其他/Nginx 部署实战.md",
+    "基础知识/其他/MySQL 基础操作.md",
+    "基础知识/其他/Linux 运维操作.md",
+    "基础知识/其他/HTTP 基础.md",
+    "基础知识/其他/Git与GitHub-版本控制与远程同步.md",
+    "基础知识/其他/Docker 基础操作.md",
+    "基础知识/Java/MyBatisPlus-数据库操作与动态SQL.md",
+    "基础知识/其他/Linux 运维操作_new.md",
     "基础知识/其他/HTTP 基础与 API 手搓.md",
     "新建文本文档.txt",
-    "基础知识/其他/Git与GitHub-版本控制与远程同步.md",
     "基础知识/Java/JavaSE-容器与常用集合整理.md",
     "基础知识/Java/JavaSE-匿名内部类-Lambda-Stream-异常-Maven整理.md",
     "基础知识/其他/Nginx部署实战-从本地开发到公网访问.md",
-    "基础知识/Java/MyBatisPlus-数据库操作与动态SQL.md",
     "develop/tmp_fix2.py",
     "develop/tmp_fix.py",
     "develop",
     "基础知识/Java/Java基础 - 基础语法、流程控制与方法.md",
-    "基础知识/Java/SpringBoot-三层架构、IOC与DI.md",
-    "基础知识/其他/MySQL 基础操作.md",
     "node_modules/playwright-core/lib/tools/skills/playwright-cli/references/playwright-tests.md",
-    "基础知识/其他/Docker 基础操作.md",
     "基础知识/Java/Java面向对象全解 - 从基础到接口.md",
     "基础知识/Java/00-目录索引.md",
-    "基础知识/其他/Linux 运维操作.md",
     "基础知识/Java/MyBatisPlus-数据库操作与动态SQL-备份.md",
     "基础知识/Java/_annotate.py",
     "package-lock.json",
@@ -244,11 +250,6 @@
     "node_modules/playwright-core/lib/tools/skills/playwright-cli/references/tracing.md",
     "node_modules/playwright-core/lib/tools/skills/playwright-cli/references/test-generation.md",
     "node_modules/playwright-core/lib/tools/skills/playwright-cli/references/storage-state.md",
-    "node_modules/playwright-core/lib/tools/skills/playwright-cli/references/running-code.md",
-    "node_modules/playwright-core/lib/tools/skills/playwright-cli/references/session-management.md",
-    "node_modules/playwright-core/lib/tools/skills/playwright-cli/references/request-mocking.md",
-    "node_modules/playwright-core/lib/tools/skills/playwright-cli/references/element-attributes.md",
-    "node_modules/playwright-core/lib/tools/skills/playwright-component-testing/references/vue.md",
     "_shared/图片和附件/image 5.png",
     "未命名.canvas",
     "未命名 1.canvas"

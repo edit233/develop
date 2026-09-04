@@ -287,7 +287,7 @@ jar 的坐标出厂就已经设置好了依赖范围，我们只需知道这个�
 2. 在父模块的 pom.xml 中用 <modules> 标签聚合子模块
 3. 对父模块执行任何 Maven 操作，所有被聚合的子模块同步执行
 
-`xml
+```xml
 <packaging>pom</packaging>
 
 <modules>
@@ -296,7 +296,7 @@ jar 的坐标出厂就已经设置好了依赖范围，我们只需知道这个�
     <module>../day06_test3</module>
 </modules>
 `
-
+```
 ---
 
 ### 6.14 Maven的继承
@@ -307,7 +307,7 @@ jar 的坐标出厂就已经设置好了依赖范围，我们只需知道这个�
 
 父工程 <dependencies> 中定义的依赖，子模块**直接继承**使用：
 
-`xml
+```xml
 <dependencies>
     <dependency>
         <groupId>junit</groupId>
@@ -316,15 +316,14 @@ jar 的坐标出厂就已经设置好了依赖范围，我们只需知道这个�
         <scope>test</scope>
     </dependency>
 </dependencies>
-`
-
+```
 > 只有**所有子模块都要用**的依赖才放家产中。
 
 #### 家规（版本管理）
 
 父工程 <dependencyManagement> 中声明依赖版本，子模块引用时**无需指定版本**：
 
-`xml
+```xml
 <dependencyManagement>
     <dependencies>
         <dependency>
@@ -334,11 +333,8 @@ jar 的坐标出厂就已经设置好了依赖范围，我们只需知道这个�
         </dependency>
     </dependencies>
 </dependencyManagement>
-`
-
+```
 子模块使用时只写 groupId + artifactId，版本由父工程统一管控。
-
----
 
 ---
 
