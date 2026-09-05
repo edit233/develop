@@ -27,7 +27,7 @@ Logback 是目前主流的日志框架，解决以上所有问题，且 SpringBo
 
 SpringBoot 已集成 Logback 依赖，只需在类上添加 @Slf4j 注解即可获取日志对象。
 
-`java
+```java
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j                    // Lombok 注解，自动生成 private static final Logger log = LoggerFactory.getLogger(...)
@@ -40,7 +40,8 @@ public class DeptController {
         return Result.success();
     }
 }
-`
+```
+
 
 ### 2.2 日志级别
 
@@ -58,7 +59,7 @@ Logback 提供四个核心级别，从低到高：
 
 ### 2.3 Controller 完整示例
 
-`java
+```java
 @Slf4j
 @RestController
 public class DeptController {
@@ -103,7 +104,8 @@ public class DeptController {
         return Result.success();
     }
 }
-`
+```
+
 
 ---
 
@@ -113,7 +115,7 @@ Logback 的配置文件为 logback.xml，放在 src/main/resources 目录下，S
 
 ### 3.1 核心配置结构
 
-`xml
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <!-- 输出格式：时间 级别 线程名 日志内容 -->
@@ -122,7 +124,7 @@ Logback 的配置文件为 logback.xml，放在 src/main/resources 目录下，S
     <!-- 控制台输出：target="System.out" -->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern></pattern>
+            <pattern>${pattern}</pattern>
         </encoder>
     </appender>
 
@@ -136,7 +138,7 @@ Logback 的配置文件为 logback.xml，放在 src/main/resources 目录下，S
             <totalSizeCap>1GB</totalSizeCap>                 <!-- 总大小上限 -->
         </rollingPolicy>
         <encoder>
-            <pattern></pattern>
+            <pattern>${pattern}</pattern>
         </encoder>
     </appender>
 
@@ -146,28 +148,29 @@ Logback 的配置文件为 logback.xml，放在 src/main/resources 目录下，S
         <appender-ref ref="FILE"/>
     </root>
 </configuration>
-`
+```
+
 
 ### 3.2 配置要点
 
 | 配置项 | 作用 |
 |--------|------|
-| <property> | 定义可复用变量，如日志输出格式 |
-| <appender> | 日志输出目的地，ConsoleAppender 输出到控制台，RollingFileAppender 输出到文件 |
-| <rollingPolicy> | 控制日志文件的滚动策略（按时间、大小切割） |
-| <root level="INFO"> | 全局日志级别，低于 INFO 的日志不输出 |
-| <appender-ref> | 将 appender 绑定到 root logger |
+| `<property>` | 定义可复用变量，如日志输出格式 |
+| `<appender>` | 日志输出目的地，ConsoleAppender 输出到控制台，RollingFileAppender 输出到文件 |
+| `<rollingPolicy>` | 控制日志文件的滚动策略（按时间、大小切割） |
+| `<root level="INFO">` | 全局日志级别，低于 INFO 的日志不输出 |
+| `<appender-ref>` | 将 appender 绑定到 root logger |
 
 ### 3.3 通过配置文件控制日志级别
 
-可以在 pplication.yml 中直接配置日志级别，无需修改 logback.xml：
+可以在 application.yml 中直接配置日志级别，无需修改 logback.xml：
 
-`yaml
+```yaml
 logging:
   level:
     root: INFO                           # 全局级别
     com.itheima: DEBUG                   # 指定包的日志级别
-`
+```
 
 ---
 

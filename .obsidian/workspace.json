@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "基础知识/Java/MyBatisPlus-数据库操作与动态SQL.md",
+                "file": "基础知识/Java/SpringBoot-统一响应与数据模型.md",
                 "mode": "preview",
-                "source": false
+                "source": true
               },
               "icon": "lucide-file",
-              "title": "MyBatisPlus-数据库操作与动态SQL"
+              "title": "SpringBoot-统一响应与数据模型"
             }
           }
         ]
@@ -85,7 +85,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "基础知识/Java/MyBatisPlus-数据库操作与动态SQL.md",
+                "file": "基础知识/Java/SpringBoot-统一响应与数据模型.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -205,15 +205,26 @@
   },
   "active": "8f538022352d1fd8",
   "lastOpenFiles": [
-    "基础知识/Java/SpringBoot-全局异常处理.md",
     "基础知识/Java/SpringBoot-三层架构、IOC与DI.md",
+    "基础知识/其他/SQL 速查手册.md",
     "基础知识/Java/SpringBoot-统一响应与数据模型.md",
     "基础知识/Java/SpringBoot-日志框架Logback.md",
     "基础知识/其他/SQL 语言全解.md",
+    "final_check.py",
+    "polish.py",
+    "final_fix.py",
+    "fix_comments.py",
+    "check3.py",
+    "fix_aliases.py",
+    "replace_sql2.py",
+    "check2.py",
+    "check_remaining.py",
+    "replace_sql.py",
+    "基础知识/Java/MyBatisPlus-数据库操作与动态SQL.md",
+    "基础知识/Java/SpringBoot-全局异常处理.md",
     "基础知识/其他/MySQL-多表关系设计.md",
     "基础知识/其他/MySQL-多表查询.md",
     "基础知识/其他/Nginx 部署实战.md",
-    "基础知识/Java/MyBatisPlus-数据库操作与动态SQL.md",
     "项目导航/项目导航.md",
     "基础知识/Java/Maven-依赖管理与多模块构建.md",
     "基础知识/其他/MySQL 基础操作.md",
@@ -223,24 +234,13 @@
     "基础知识/其他/Docker 基础操作.md",
     "基础知识/其他/Linux 运维操作_new.md",
     "基础知识/其他/HTTP 基础与 API 手搓.md",
-    "新建文本文档.txt",
     "基础知识/Java/JavaSE-容器与常用集合整理.md",
     "基础知识/Java/JavaSE-匿名内部类-Lambda-Stream-异常-Maven整理.md",
     "基础知识/其他/Nginx部署实战-从本地开发到公网访问.md",
-    "develop/tmp_fix2.py",
-    "develop/tmp_fix.py",
-    "develop",
     "基础知识/Java/Java基础 - 基础语法、流程控制与方法.md",
     "node_modules/playwright-core/lib/tools/skills/playwright-cli/references/playwright-tests.md",
     "基础知识/Java/Java面向对象全解 - 从基础到接口.md",
     "基础知识/Java/00-目录索引.md",
-    "基础知识/Java/MyBatisPlus-数据库操作与动态SQL-备份.md",
-    "基础知识/Java/_annotate.py",
-    "package-lock.json",
-    "package.json",
-    "node_modules/playwright-core/lib/vite/traceViewer/manifest.webmanifest",
-    "node_modules/playwright-core/lib/webp_codec.wasm",
-    "node_modules/playwright-core/ThirdPartyNotices.txt",
     "node_modules/playwright-core/lib/vite/dashboard/assets/safari-na3_-uQk.svg",
     "node_modules/playwright-core/lib/vite/traceViewer/playwright-logo.svg",
     "node_modules/playwright-core/lib/vite/recorder/playwright-logo.svg",
