@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "基础知识/Java/SpringBoot-统一响应与数据模型.md",
+                "file": "基础知识/其他/SQL 语言全解.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "SpringBoot-统一响应与数据模型"
+              "title": "SQL 语言全解"
             }
           }
         ]
@@ -85,7 +85,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "基础知识/Java/SpringBoot-统一响应与数据模型.md",
+                "file": "基础知识/其他/SQL 语言全解.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -203,19 +203,24 @@
       "bases:新建数据库": false
     }
   },
-  "active": "8f538022352d1fd8",
+  "active": "6cd7fff7bcc7681e",
   "lastOpenFiles": [
-    "项目导航/项目导航.md",
-    "基础知识/Java/SpringBoot-统一响应与数据模型.md",
-    "基础知识/Java/SpringBoot-三层架构、IOC与DI.md",
-    "基础知识/Java/Maven-依赖管理与多模块构建.md",
+    "基础知识/其他/MySQL-多表关系设计.md",
+    "基础知识/其他/SQL 语言全解.md",
+    "基础知识/其他/MySQL-多表查询.md",
     "基础知识/其他/Nginx 部署实战.md",
+    "基础知识/Java/MyBatisPlus-数据库操作与动态SQL.md",
+    "基础知识/Java/SpringBoot-全局异常处理.md",
+    "基础知识/Java/SpringBoot-日志框架Logback.md",
+    "基础知识/Java/SpringBoot-三层架构、IOC与DI.md",
+    "基础知识/Java/SpringBoot-统一响应与数据模型.md",
+    "项目导航/项目导航.md",
+    "基础知识/Java/Maven-依赖管理与多模块构建.md",
     "基础知识/其他/MySQL 基础操作.md",
     "基础知识/其他/Linux 运维操作.md",
     "基础知识/其他/HTTP 基础.md",
     "基础知识/其他/Git与GitHub-版本控制与远程同步.md",
     "基础知识/其他/Docker 基础操作.md",
-    "基础知识/Java/MyBatisPlus-数据库操作与动态SQL.md",
     "基础知识/其他/Linux 运维操作_new.md",
     "基础知识/其他/HTTP 基础与 API 手搓.md",
     "新建文本文档.txt",
@@ -245,11 +250,6 @@
     "node_modules/playwright-core/lib/vite/dashboard/assets/firefox-1bWoP6pv.svg",
     "node_modules/playwright-core/lib/tools/dashboard/appIcon.png",
     "node_modules/playwright-core/lib/server/chromium/appIcon.png",
-    "node_modules/playwright-core/README.md",
-    "node_modules/playwright-core/lib/tools/skills/playwright-cli/references/video-recording.md",
-    "node_modules/playwright-core/lib/tools/skills/playwright-cli/references/tracing.md",
-    "node_modules/playwright-core/lib/tools/skills/playwright-cli/references/test-generation.md",
-    "node_modules/playwright-core/lib/tools/skills/playwright-cli/references/storage-state.md",
     "_shared/图片和附件/image 5.png",
     "未命名.canvas",
     "未命名 1.canvas"
