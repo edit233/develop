@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "基础知识/Java/SpringBoot-统一响应与数据模型.md",
+                "file": "基础知识/其他/Git与GitHub-版本控制与远程同步.md",
                 "mode": "preview",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "SpringBoot-统一响应与数据模型"
+              "title": "Git与GitHub-版本控制与远程同步"
             }
           }
         ]
@@ -85,7 +85,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "基础知识/Java/SpringBoot-统一响应与数据模型.md",
+                "file": "基础知识/其他/Git与GitHub-版本控制与远程同步.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -205,11 +205,17 @@
   },
   "active": "8f538022352d1fd8",
   "lastOpenFiles": [
+    "基础知识/Java/SpringBoot-全栈开发笔记.md",
+    "基础知识/其他/Docker 基础操作.md",
+    "基础知识/Java/MyBatisPlus-数据库操作与动态SQL.md",
+    "基础知识/Java/SpringBoot-用户管理与文件上传.md",
+    "_merge.py",
+    "基础知识/其他/SQL 语言全解.md",
+    "_write_files.py",
+    "基础知识/Java/SpringBoot-统一响应与数据模型.md",
     "基础知识/Java/SpringBoot-三层架构、IOC与DI.md",
     "基础知识/其他/SQL 速查手册.md",
-    "基础知识/Java/SpringBoot-统一响应与数据模型.md",
     "基础知识/Java/SpringBoot-日志框架Logback.md",
-    "基础知识/其他/SQL 语言全解.md",
     "final_check.py",
     "polish.py",
     "final_fix.py",
@@ -218,9 +224,6 @@
     "fix_aliases.py",
     "replace_sql2.py",
     "check2.py",
-    "check_remaining.py",
-    "replace_sql.py",
-    "基础知识/Java/MyBatisPlus-数据库操作与动态SQL.md",
     "基础知识/Java/SpringBoot-全局异常处理.md",
     "基础知识/其他/MySQL-多表关系设计.md",
     "基础知识/其他/MySQL-多表查询.md",
@@ -231,7 +234,6 @@
     "基础知识/其他/Linux 运维操作.md",
     "基础知识/其他/HTTP 基础.md",
     "基础知识/其他/Git与GitHub-版本控制与远程同步.md",
-    "基础知识/其他/Docker 基础操作.md",
     "基础知识/其他/Linux 运维操作_new.md",
     "基础知识/其他/HTTP 基础与 API 手搓.md",
     "基础知识/Java/JavaSE-容器与常用集合整理.md",
@@ -239,8 +241,6 @@
     "基础知识/其他/Nginx部署实战-从本地开发到公网访问.md",
     "基础知识/Java/Java基础 - 基础语法、流程控制与方法.md",
     "node_modules/playwright-core/lib/tools/skills/playwright-cli/references/playwright-tests.md",
-    "基础知识/Java/Java面向对象全解 - 从基础到接口.md",
-    "基础知识/Java/00-目录索引.md",
     "node_modules/playwright-core/lib/vite/dashboard/assets/safari-na3_-uQk.svg",
     "node_modules/playwright-core/lib/vite/traceViewer/playwright-logo.svg",
     "node_modules/playwright-core/lib/vite/recorder/playwright-logo.svg",

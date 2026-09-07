@@ -445,3 +445,131 @@ userMapper.delete(wrapper);
 ---
 
 *最后更新：2026-09-02*
+
+
+---
+
+## IService 业务层增强
+
+MyBatis-Plus 除 `BaseMapper` 外，还提供通用 Service 接口 `IService` 和默认实现 `ServiceImpl`，封装了常用的 Service 模板方法。
+
+### 方法分类
+
+| 类别 | 方法 | 说明 |
+|------|------|------|
+| **新增** | `save` / `saveBatch` | 单个/批量插入 |
+| | `saveOrUpdate` | 根据 id 判断，存在则更新，不存在则新增 |
+| | `saveOrUpdateBatch` | 批量新增或修改 |
+| **删除** | `removeById` / `removeByIds` | 根据 id 单个/批量删除 |
+| | `removeByMap` | 根据 Map 键值对条件删除 |
+| | `remove(Wrapper)` | 根据 Wrapper 条件删除 |
+| **修改** | `updateById` | 根据 id 更新非 null 字段 |
+| | `update(T, Wrapper)` | 按 T 内数据修改 Wrapper 匹配的数据 |
+| | `updateBatchById` | 根据 id 批量修改 |
+| **查询** | `getById` / `getOne(Wrapper)` | 查询单条 |
+| | `list()` / `listByIds` / `list(Wrapper)` | 查询集合 |
+| | `count()` / `count(Wrapper)` | 统计数量 |
+| | `getBaseMapper()` | 获取 Service 内的 BaseMapper 实现，用于调用自定义 SQL |
+| **分页** | `page(Page, Wrapper)` | 分页查询 |
+
+### 快速入门
+
+自定义 Service 接口继承 `IService`，实现类继承 `ServiceImpl`，即可直接使用所有模板方法：
+
+```java
+// Service 接口
+public interface UserService extends IService<User> {
+    // 可选：定义自定义业务方法
+}
+
+// Service 实现类
+@Service
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
+    // 无需手动实现 IService 中的 CRUD 方法
+    // 复杂业务逻辑在此编写
+}
+```
+
+> **使用建议**：简单 CRUD 直接用 IService 方法，复杂业务（多表、自定义 SQL）仍需在自己的 Service 实现类中编写。
+
+### 多表查询与分页结合
+
+MyBatis-Plus 适合单表操作。多表查询需手写 SQL，但可以借助 `Page` 对象实现分页：
+
+```java
+// ServiceImpl 中
+@Override
+public PageResult<User> getUsers(UserDto userDto) {
+    Page<User> p = new Page<>(userDto.getPage(), userDto.getPageSize());
+    // 将 Page 传入 Mapper，MyBatis-Plus 自动追加分页逻辑
+    userMapper.selectByPage(p, userDto);
+    return new PageResult<>(p.getTotal(), p.getRecords());
+}
+```
+
+```java
+// Mapper 接口（注意返回类型是 Page）
+Page<User> selectByPage(Page<User> page, UserDto userDto);
+```
+
+---
+
+## 自动填充
+
+### 问题
+
+使用 `IService` 后，创建时间和更新时间的填充逻辑可能堆积在 Controller 层，违背三层架构的职责划分。MyBatis-Plus 提供了**自动填充**机制解决此问题。
+
+### 使用步骤
+
+#### 1. 实体类标记填充字段
+
+```java
+@Data
+public class User {
+    @TableId
+    private Integer id;
+
+    @TableField(fill = FieldFill.INSERT)           // 插入时填充
+    private LocalDateTime createTime;
+
+    @TableField(fill = FieldFill.INSERT_UPDATE)    // 插入和更新时都填充
+    private LocalDateTime updateTime;
+}
+```
+
+| FieldFill 值 | 触发时机 |
+|----------------|---------|
+| `INSERT` | 仅插入时 |
+| `UPDATE` | 仅更新时 |
+| `INSERT_UPDATE` | 插入和更新时 |
+
+#### 2. 实现 MetaObjectHandler
+
+```java
+@Slf4j
+@Component
+public class MyMetaObjectHandler implements MetaObjectHandler {
+
+    @Override
+    public void insertFill(MetaObject metaObject) {
+        this.setFieldValByName("createTime", LocalDateTime.now(), metaObject);
+        this.setFieldValByName("updateTime", LocalDateTime.now(), metaObject);
+    }
+
+    @Override
+    public void updateFill(MetaObject metaObject) {
+        this.setFieldValByName("updateTime", LocalDateTime.now(), metaObject);
+    }
+}
+```
+
+#### 3. 三种填充方式对比
+
+| 方式 | 方法 | 行为 |
+|------|------|------|
+| strictInsertFill / strictUpdateFill | `this.strictInsertFill(metaObject, "createTime", LocalDateTime.class, LocalDateTime.now())` | 目标属性**有值则跳过**，无值才填充 |
+| metaObject.setValue | `metaObject.setValue("createTime", LocalDateTime.now())` | 目标属性**不管有没有值都会被覆盖** |
+| setFieldValByName | `this.setFieldValByName("createTime", LocalDateTime.now(), metaObject)` | **先判断属性是否存在**，存在才填充 |
+
+> **推荐使用 `setFieldValByName`**：源码先做 `metaObject.hasSetter(fieldName)` 判断，健壮性最好。
